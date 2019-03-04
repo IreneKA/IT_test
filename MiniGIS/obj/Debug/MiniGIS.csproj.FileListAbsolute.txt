@@ -1,0 +1,24 @@
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\bin\Debug\MiniGIS.exe.config
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\bin\Debug\MiniGIS.exe
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\bin\Debug\MiniGIS.pdb
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.Properties.Resources.resources
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.exe
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.pdb
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.MainForm.resources
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.Map.resources
+C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGIS\obj\Debug\MiniGIS.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGIS\obj\Debug\MiniGIS.MainForm.resources
+C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGIS\obj\Debug\MiniGIS.Map.resources
+C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGIS\obj\Debug\MiniGIS.Properties.Resources.resources
+C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGIS\obj\Debug\MiniGIS.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGIS\obj\Debug\MiniGIS.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGIS\obj\Debug\MiniGIS.exe
+C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGIS\obj\Debug\MiniGIS.pdb
+C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGIS\bin\Debug\MiniGIS.exe.config
+C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGIS\bin\Debug\MiniGIS.exe
+C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGIS\bin\Debug\MiniGIS.pdb
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.LayersControl.resources
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.csprojAssemblyReference.cache
+C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.MyMessageBox.resources
