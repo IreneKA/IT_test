@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Drawing.Drawing2D;
-using System.Drawing;
-using MiniGIS.Properties;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Reflection;
 using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace MiniGIS
 {
     public partial class Map : UserControl
     {
         internal List<MapObject> SelectedObjects = new List<MapObject>();
-        protected List<Layer> layers = new List<Layer>();
-        public List<Layer> Layers => layers;
+        protected List<VectorLayer> layers = new List<VectorLayer>();
+        public List<VectorLayer> Layers => layers;
         public string Name;
         private Vertex center = new Vertex(0, 0);
         private double mapScale = 1;
@@ -39,8 +38,8 @@ namespace MiniGIS
                 Invalidate();
             }
         }
-        private bool IsMouseDown = false;
-        private System.Drawing.Point mouseDownPosition = new System.Drawing.Point();
+        private bool IsMouseDown;
+        private System.Drawing.Point mouseDownPosition;
         private MapToolType activeTool;
         public Bounds Bounds { get { return UpdateBounds(); } }
 
@@ -99,20 +98,20 @@ namespace MiniGIS
         public Map()
         {
             InitializeComponent();
-            this.MouseWheel += new MouseEventHandler(Map_MouseWheel);
+            MouseWheel += Map_MouseWheel;
         }
-        public void AddLayer(Layer lay)
+        public void AddLayer(VectorLayer lay)
         {
             layers.Add(lay);
             lay.map = this;
         }
         public void RemoveLayer(int index)
         {
-            Layer lay = layers[index];
+            VectorLayer lay = layers[index];
             foreach (var obj in lay.Objects) obj.Layers.Remove(lay);
             layers.RemoveAt(index);
         }
-        public void RemoveLayer(Layer item)
+        public void RemoveLayer(VectorLayer item)
         {
             if (item.Objects.Count!=0) 
             foreach (var obj in item.Objects) obj.Layers.Remove(item);
@@ -121,7 +120,7 @@ namespace MiniGIS
         public void RemoveAllLayer()
         {
             layers.Clear();
-            foreach (var lay in this.layers)
+            foreach (var lay in layers)
             {
                 foreach (var obj in lay.Objects) obj.Layers.Remove(lay);
             }
@@ -129,17 +128,21 @@ namespace MiniGIS
         
         public System.Drawing.Point MapToScreen(Vertex point)
         {
-            System.Drawing.Point screenPoint = new System.Drawing.Point();
-            screenPoint.X = (int)((point.X - center.X) * mapScale + Width / 2 + 0.5);
-            screenPoint.Y = (int)(-(point.Y - center.Y) * mapScale + Height / 2 + 0.5);
+            System.Drawing.Point screenPoint = new System.Drawing.Point
+            {
+                X = (int) ((point.X - center.X) * mapScale + Width / 2 + 0.5),
+                Y = (int) (-(point.Y - center.Y) * mapScale + Height / 2 + 0.5)
+            };
             return screenPoint;
         }
 
         public Vertex ScreenToMap(System.Drawing.Point screenPoint)
         {
-            Vertex point = new Vertex(0,0);
-            point.X = ((screenPoint.X - Width / 2) / mapScale + center.X);
-            point.Y = -(screenPoint.Y - Height / 2) / MapScale + Center.Y;
+            Vertex point = new Vertex(0, 0)
+            {
+                X = ((screenPoint.X - Width / 2) / mapScale + center.X),
+                Y = -(screenPoint.Y - Height / 2) / MapScale + Center.Y
+            };
             return point;
         }
 
@@ -194,7 +197,7 @@ namespace MiniGIS
                 Y = mouseDownPosition.Y > e.Y ? mouseDownPosition.Y : e.Y
             };
             Graphics g;
-            g = this.CreateGraphics();
+            g = CreateGraphics();
             g.DrawRectangle(new Pen(Color.Black, 2), topLeft.X, topLeft.Y,
         bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
             Refresh();
@@ -231,9 +234,11 @@ namespace MiniGIS
                 case MapToolType.ZoomIn:
                     var w = Math.Abs(mouseDownPosition.X - e.Location.X);
                     var h = Math.Abs(mouseDownPosition.Y - e.Location.Y);
-                    System.Drawing.Point screenPoint = new System.Drawing.Point();
-                    screenPoint.X = (mouseDownPosition.X + e.Location.X) / 2;
-                    screenPoint.Y = (mouseDownPosition.Y + e.Location.Y) / 2;
+                    var screenPoint = new System.Drawing.Point
+                    {
+                        X = (mouseDownPosition.X + e.Location.X) / 2,
+                        Y = (mouseDownPosition.Y + e.Location.Y) / 2
+                    };
                     Center = ScreenToMap(screenPoint);
                     if (w==0 && h==0)
                     {
@@ -283,15 +288,15 @@ namespace MiniGIS
         public void ZoomAll()
         {
             if (!Bounds.Valid) return;
-            var h = (Bounds.Ymax - Bounds.Ymin) * MapScale;
-            var w = (Bounds.Xmax - Bounds.Xmin) * MapScale;
+            var h = (Bounds.YMax - Bounds.YMin) * MapScale;
+            var w = (Bounds.XMax - Bounds.XMin) * MapScale;
             if (!(w<=snap||h<=snap))
                 mapScale *= Math.Min(Width / w, Height / h);
-            Center = new Vertex((Bounds.Xmax + Bounds.Xmin) / 2, (Bounds.Ymax + Bounds.Ymin) / 2);
+            Center = new Vertex((Bounds.XMax + Bounds.XMin) / 2, (Bounds.YMax + Bounds.YMin) / 2);
             Invalidate();
         }
 
-        public void ZoomLayers(List<Layer> layers)
+        public void ZoomLayers(List<VectorLayer> layers)
         {
             if (layers == null) return;
             Bounds b = new Bounds();
@@ -300,14 +305,14 @@ namespace MiniGIS
                 if(layer.Visible)
                 b = b.UnionBounds(layer.Bounds);
             }
-            var h = (b.Ymax - b.Ymin) * MapScale;
-            var w = (b.Xmax - b.Xmin) * MapScale;
+            var h = (b.YMax - b.YMin) * MapScale;
+            var w = (b.XMax - b.XMin) * MapScale;
             if (w != 0 && h != 0)
                 mapScale *= Math.Min(Width / w, Height / h);
-            Center = new Vertex((b.Xmax + b.Xmin) / 2, (b.Ymax + b.Ymin) / 2);
+            Center = new Vertex((b.XMax + b.XMin) / 2, (b.YMax + b.YMin) / 2);
         }
 
-        public void MoveLayerUp(Layer layer)
+        public void MoveLayerUp(VectorLayer layer)
         {
             if (!layers.Contains(layer)) return;
             int index = layers.IndexOf(layer);
@@ -315,7 +320,7 @@ namespace MiniGIS
             layers.RemoveAt(index);
             layers.Insert(index + 1, layer);
         }
-        public void MoveLayerDown(Layer layer)
+        public void MoveLayerDown(VectorLayer layer)
         {
             if (!layers.Contains(layer)) return;
             int index = layers.IndexOf(layer);
@@ -333,7 +338,7 @@ namespace MiniGIS
 
         internal void FindPolylines(MapObject polygon)
         {
-            foreach(Layer layer in Layers)
+            foreach(VectorLayer layer in Layers)
             {
                 if(layer.Visible)
                 layer.FindPolylines(polygon);

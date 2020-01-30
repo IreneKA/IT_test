@@ -1,27 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MiniGIS
 {
     /// <summary>
-    /// Класс для работы с точечными объектами
+    /// Класс для работы с точечными объектами.
     /// </summary>
     public class Point : MapObject
     {
-        private Vertex position;
+        private readonly Vertex _position;
         #region constructors
         public Point(double x, double y)
         {
-            position = new Vertex(x, y);
+            _position = new Vertex(x, y);
             objectType = MapObjectType.Point;
         }
         public Point(Vertex vertex)
         {
-            position = vertex;
+            _position = vertex;
             objectType = MapObjectType.Point;
         }
         
@@ -29,25 +26,13 @@ namespace MiniGIS
         #region properties
         public double X
         {
-            get
-            {
-                return position.X;
-            }
-            set
-            {
-                position.X = value;
-            }
+            get => _position.X;
+            set => _position.X = value;
         }
         public double Y
         {
-            get
-            {
-                return position.Y;
-            }
-            set
-            {
-                position.Y = value;
-            }
+            get => _position.Y;
+            set => _position.Y = value;
         }
         #endregion properties
         internal override void Draw(PaintEventArgs e)
@@ -58,13 +43,13 @@ namespace MiniGIS
                 LineAlignment = StringAlignment.Center
             };
             Char c = (Char)ChooseSymbol().Number;
-            e.Graphics.DrawString(c.ToString(), Symbol.Font, Brush, Layers[0].Map.MapToScreen(position), stringFormat);
+            e.Graphics.DrawString(c.ToString(), Symbol.Font, Brush, Layers[0].Map.MapToScreen(_position), stringFormat);
         }
 
         protected override Bounds GetBounds()
         {
             Bounds bounds = new Bounds();
-            bounds.SetBounds(position, position);
+            bounds.SetBounds(_position, _position);
             return bounds;
         }
 

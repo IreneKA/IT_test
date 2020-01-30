@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MiniGIS
@@ -26,13 +20,12 @@ namespace MiniGIS
             listView.Items.Clear();
             foreach (var layer in Map.Layers)
             {
-                var listViewItem = new ListViewItem();
-                listViewItem.Text = layer.Name;
-                listViewItem.Checked = layer.Visible;
-                listViewItem.Selected = layer.Selected;
-                listViewItem.Tag = layer;
+                var listViewItem = new ListViewItem
+                {
+                    Text = layer.Name, Checked = layer.Visible, Selected = layer.Selected, Tag = layer
+                };
                 listView.Items.Insert(0, listViewItem);
-                var tmplayer = (Layer)listViewItem.Tag;
+                var tmplayer = (VectorLayer)listViewItem.Tag;
                 tmplayer.Visible = listViewItem.Checked;
             }
             CheckButtons();
@@ -41,7 +34,7 @@ namespace MiniGIS
         private void listView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             var listViewItem = e.Item;
-            Layer layer = (Layer)listViewItem.Tag;
+            VectorLayer layer = (VectorLayer)listViewItem.Tag;
             if (layer == null) return;
             layer.Visible = !layer.Visible;
             Map.Invalidate();
@@ -53,7 +46,7 @@ namespace MiniGIS
             if (listView.SelectedItems.Count == 0) return;
             foreach (ListViewItem item in listView.SelectedItems)
             {
-                Layer layer = (Layer)item.Tag;
+                VectorLayer layer = (VectorLayer)item.Tag;
                 if (layer != null)
                 {
                     Map.RemoveLayer(layer);
@@ -90,12 +83,12 @@ namespace MiniGIS
             buttonDown.Enabled = listView.SelectedItems.Count == 1 && listView.SelectedItems[0].Index < listView.Items.Count - 1;
         }
 
-        public List<Layer> ReturnSelectedLayers()
+        public List<VectorLayer> ReturnSelectedLayers()
         {
-            List<Layer> layers = new List<Layer>();
+            List<VectorLayer> layers = new List<VectorLayer>();
             foreach (ListViewItem item in listView.SelectedItems)
             {
-                Layer layer = (Layer)item.Tag;
+                VectorLayer layer = (VectorLayer)item.Tag;
                 if (layer != null)
                 {
                     layers.Add(layer);
@@ -107,7 +100,7 @@ namespace MiniGIS
         {
             if (Map == null) return;
             if (listView.SelectedItems.Count != 1) return;
-            Layer layer = (Layer)listView.SelectedItems[0].Tag;
+            VectorLayer layer = (VectorLayer)listView.SelectedItems[0].Tag;
             if (layer == null) return;
             Map.MoveLayerUp(layer);
             UpdateLayers();
@@ -116,7 +109,7 @@ namespace MiniGIS
         {
             if (Map == null) return;
             if (listView.SelectedItems.Count != 1) return;
-            Layer layer = (Layer)listView.SelectedItems[0].Tag;
+            VectorLayer layer = (VectorLayer)listView.SelectedItems[0].Tag;
             if (layer == null) return;
             Map.MoveLayerDown(layer);
             UpdateLayers();
@@ -124,7 +117,7 @@ namespace MiniGIS
 
         private void listView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            Layer layer = (Layer)e.Item.Tag;
+            VectorLayer layer = (VectorLayer)e.Item.Tag;
             layer.Selected = e.IsSelected;
         }
 

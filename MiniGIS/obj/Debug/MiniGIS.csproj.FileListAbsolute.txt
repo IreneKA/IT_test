@@ -22,3 +22,15 @@ C:\Users\user\Desktop\Геоинформатика\MiniGIS — копия\MiniGI
 C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.LayersControl.resources
 C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.csprojAssemblyReference.cache
 C:\Users\user\Desktop\Геоинформатика\MiniGIS\MiniGIS\obj\Debug\MiniGIS.MyMessageBox.resources
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\bin\Debug\MiniGIS.exe.config
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\bin\Debug\MiniGIS.exe
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\bin\Debug\MiniGIS.pdb
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\obj\Debug\MiniGIS.csprojAssemblyReference.cache
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\obj\Debug\MiniGIS.LayersControl.resources
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\obj\Debug\MiniGIS.MainForm.resources
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\obj\Debug\MiniGIS.Map.resources
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\obj\Debug\MiniGIS.MyMessageBox.resources
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\obj\Debug\MiniGIS.Properties.Resources.resources
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\obj\Debug\MiniGIS.csproj.GenerateResource.cache
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\obj\Debug\MiniGIS.exe
+C:\Users\reall\OneDrive\Рабочий стол\MiniGIS\MiniGIS\obj\Debug\MiniGIS.pdb

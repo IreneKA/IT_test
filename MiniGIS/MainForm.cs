@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MiniGIS.Properties;
 
 namespace MiniGIS
 {
@@ -21,27 +16,23 @@ namespace MiniGIS
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            buttonSelect.Image = Properties.Resources._9_512;
-            buttonPan.Image = Properties.Resources.hand_drag_512;
-            buttonZoomIn.Image = Properties.Resources._12_zoom_in_512;
-            buttonZoomOut.Image = Properties.Resources._2000px_Zoom_out_font_awesome_svg;
-            Line line1 = new Line(new Vertex(50, 0), new Vertex(-50, 0));
-            line1.UseOwnStyle = true;
-            line1.Pen = new Pen(Color.Red, 2);
-            line1.Pen.DashStyle = DashStyle.Dash;
-            Line line2 = new Line(new Vertex(0, 50), new Vertex(0, -50));
-            line2.UseOwnStyle = true;
-            line2.Pen = new Pen(Color.Red, 2);
-            line2.Pen.DashStyle = DashStyle.Dash;
+            buttonSelect.Image = Resources._9_512;
+            buttonPan.Image = Resources.hand_drag_512;
+            buttonZoomIn.Image = Resources._12_zoom_in_512;
+            buttonZoomOut.Image = Resources._2000px_Zoom_out_font_awesome_svg;
+            Line line1 = new Line(new Vertex(50, 0), new Vertex(-50, 0))
+            {
+                UseOwnStyle = true, Pen = new Pen(Color.Red, 2) {DashStyle = DashStyle.Dash}
+            };
+            Line line2 = new Line(new Vertex(0, 50), new Vertex(0, -50))
+            {
+                UseOwnStyle = true, Pen = new Pen(Color.Red, 2) {DashStyle = DashStyle.Dash}
+            };
 
-            Layer layer = new Layer();
-            layer.Name = "Тест";
-            Layer layer1 = new Layer();
-            layer1.Name = "Тест1";
-            Layer layer2 = new Layer();
-            layer2.Name = "Тест2";
-            Layer layer3 = new Layer();
-            layer3.Name = "Тест3";
+            VectorLayer layer = new VectorLayer {Name = "Тест"};
+            VectorLayer layer1 = new VectorLayer {Name = "Тест1"};
+            VectorLayer layer2 = new VectorLayer {Name = "Тест2"};
+            var layer3 = new VectorLayer {Name = "Тест3"};
 
             Polyline polyline = new Polyline();
             polyline.AddNode(0, 100);
@@ -103,8 +94,7 @@ namespace MiniGIS
                 {
                     int extansIndex = filename[i].IndexOf(".");
                     string layerName = filename[i].Substring(0, extansIndex);
-                    var layer = new Layer();
-                    layer.Name = layerName;
+                    var layer = new VectorLayer {Name = layerName};
                     var parser = new Parser(filePathName[i]);
                     foreach (var mapObject in parser.Data)
                     {

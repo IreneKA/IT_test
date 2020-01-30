@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using ScreenPoint = System.Drawing.Point;
-using System.Drawing;
 
 namespace MiniGIS
 {

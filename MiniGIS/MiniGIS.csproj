@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bounds.cs" />
+    <Compile Include="Grid.cs" />
+    <Compile Include="Layer.cs" />
     <Compile Include="LayersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -58,7 +60,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layer.cs" />
+    <Compile Include="VectorLayer.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Map.cs">
       <SubType>UserControl</SubType>

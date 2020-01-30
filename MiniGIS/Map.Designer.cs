@@ -1,11 +1,16 @@
-﻿namespace MiniGIS
+﻿using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace MiniGIS
 {
     partial class Map
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Освободить все используемые ресурсы.
@@ -32,15 +37,15 @@
             // 
             // Map
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new SizeF(6F, 13F);
+            this.AutoScaleMode = AutoScaleMode.Font;
             this.DoubleBuffered = true;
             this.Name = "Map";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Map_Paint);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Map_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Map_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Map_MouseUp);
-            this.Resize += new System.EventHandler(this.Map_Resize);
+            this.Paint += new PaintEventHandler(this.Map_Paint);
+            this.MouseDown += new MouseEventHandler(this.Map_MouseDown);
+            this.MouseMove += new MouseEventHandler(this.Map_MouseMove);
+            this.MouseUp += new MouseEventHandler(this.Map_MouseUp);
+            this.Resize += new EventHandler(this.Map_Resize);
             this.ResumeLayout(false);
 
         }

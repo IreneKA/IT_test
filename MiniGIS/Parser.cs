@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Drawing;
-using System.Globalization;
 using System.Drawing.Drawing2D;
+using System.Globalization;
+using System.IO;
 
 namespace MiniGIS
 {
@@ -327,14 +327,6 @@ namespace MiniGIS
             byte green = (byte)((dec >> 8) & 0xff);
             byte blue = (byte)(dec & 0xff);
             return (Color.FromArgb(red, green, blue));
-        }
-
-        private static Color IntToColor(int alpha, int dec)
-        {
-            byte red = (byte)((dec >> 16) & 0xff);
-            byte green = (byte)((dec >> 8) & 0xff);
-            byte blue = (byte)(dec & 0xff);
-            return (Color.FromArgb(alpha, red, green, blue));
         }
 
         private Pen GetPen(string w, string p, string c)

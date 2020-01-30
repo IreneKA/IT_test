@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MiniGIS
 {
     public abstract class MapObject
     {
-        private List<Layer> layers = new List<Layer>();
+        private List<VectorLayer> layers = new List<VectorLayer>();
         public bool UseOwnStyle = false;
         private Pen pen;
 
-        private Pen SelectionPen = new Pen(Color.Blue, 2);
+        private readonly Pen SelectionPen = new Pen(Color.Blue, 2);
 
-        private bool selected = false;
+        private bool selected;
         public bool Selected { get { return selected; }
             set
             { if (value)
@@ -60,7 +57,7 @@ namespace MiniGIS
                 brush = value;
             }
         }
-        public List<Layer> Layers
+        public List<VectorLayer> Layers
         {
             get
             {
@@ -97,7 +94,7 @@ namespace MiniGIS
         {
             if (Selected) return SelectionPen;
             if (UseOwnStyle) return Pen;
-            else return layers[0].Pen;
+            return layers[0].Pen;
         }
         internal Brush ChooseBrush()
         {
